@@ -3,11 +3,32 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <div id="app">
+      <div id="takeoff">
+      <h2>Take mass calculations</h2>
+      <label for="athrust">Average thrust</label>
+      <input id="athrust" type="text" v-model="thrust" value=0 debounce=200/>
+      {{ thrust / 22.45}} lb maximum
+      <p>
+      <label for="takeoffmass">Takeoff Mass (lb)</label>
+      <input id="takeoffmass" type="text" v-model="takeoffm" value=0 debounce=200>
+      {{ takeoffm * 22.45}} average Ns needed
+    </p>
+      </div>
+    </div>
+
+    <script>
+      var Vue = require('vue');
+      var vm = new Vue({
+        el: '#app',
+        data:{
+          message: "hello world"
+        }
+
+      });
+    </script>
   </body>
 </html>

@@ -3,20 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-
+    <link rel="stylesheet" href="theme.css"/>
   </head>
   <body>
     <div id="app">
-      <div id="takeoff">
-      <h2>Take mass calculations</h2>
+      <div id="takeoff" v-on:click="toggleTakeoff">
+      <h2>Takeoff mass calculations</h2>
+      <div v-if="showTakeoff">
       <label for="athrust">Average thrust</label>
-      <input id="athrust" type="text" v-model="thrust" value=0 debounce=200/>
+      <input id="athrust" type="text" v-model="thrust" value=0 debounce=500/>
       {{ thrust / 22.45}} lb maximum
       <p>
       <label for="takeoffmass">Takeoff Mass (lb)</label>
-      <input id="takeoffmass" type="text" v-model="takeoffm" value=0 debounce=200>
+      <input id="takeoffmass" type="text" v-model="takeoffm" value=0 debounce=500>
       {{ takeoffm * 22.45}} average Ns needed
-    </p>
+      </p>
+      </div>
       </div>
     </div>
 
@@ -25,7 +27,12 @@
       var vm = new Vue({
         el: '#app',
         data:{
-          message: "hello world"
+          showTakeoff:false,
+        },
+        methods:{
+          toggleTakeoff: function(event){
+            this.showTakeoff = !this.showTakeoff;
+          }
         }
 
       });
